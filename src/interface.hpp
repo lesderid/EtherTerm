@@ -127,9 +127,7 @@ public:
                     }
                 }
 
-                // Delay for CPU Usage, 10 ms is pretty good.
-                SDL_Delay(10);
-
+                SDL_Delay(0);
             }
             catch(std::exception &e)
             {
