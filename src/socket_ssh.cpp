@@ -63,9 +63,7 @@ int SSH_Socket::recvSocket(char *message)
             return SSH_ERROR;
         }
     }
-    
-    std::cout << "recvSocket" << " message: " << message <<  std::endl;
-    
+
     return result;
 }
 
@@ -101,8 +99,7 @@ bool SSH_Socket::onEnter()
     m_ssh_session = ssh_new();
     if(m_ssh_session == nullptr)
     {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-                                 "Closed Session", "User has closed the program.", nullptr);
+        SDL_Log("User has closed the program.");
 
         m_is_socket_active = false;
         return false;
@@ -138,8 +135,8 @@ bool SSH_Socket::onEnter()
         std::cout << "Error: ssh_connect: " << m_host
                   << " " << ssh_get_error(m_ssh_session) << std::endl;
 
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-                                 "Closed Session", "Unable to Connect to Server!", nullptr);
+
+        SDL_Log("Unable to connect to server!");
 
         m_is_socket_active = false;
         return false;
@@ -152,8 +149,8 @@ bool SSH_Socket::onEnter()
         std::cout << "Error: verify_knownhost: " << m_host
                   << " " << ssh_get_error(m_ssh_session) << " " << rc << std::endl;
 
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-                                 "Closed Session", "User has closed the program.", nullptr);
+
+        SDL_Log("User has closed the program.");
 
         m_is_socket_active = false;
         return false;
@@ -198,10 +195,7 @@ bool SSH_Socket::onEnter()
     {
         printf("\r\n SSH Error, Request for PTY Failed. %s: %s - %i \r\n",
         host, ssh_get_error(m_ssh_session), rc);
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-             "Closed Session",
-             "User has closed the program.",
-             NULL);
+        SDL_Log("User has closed the program.");
         onExit();
     }*/
 

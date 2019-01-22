@@ -215,13 +215,7 @@ int main(int argc, char* argv[])
 	std::cout << "EtherTerm Shutdown completed." << std::endl;
 	SDL_Quit();
 
-    // Closing Message Box.
-    SDL_ShowSimpleMessageBox(
-        SDL_MESSAGEBOX_INFORMATION,
-        "Closed Session",
-        "User has closed the program.",
-        nullptr
-    );
+    SDL_Log("User has closed the program.");
 
     exit(0);
 }
