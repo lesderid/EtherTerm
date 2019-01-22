@@ -551,6 +551,7 @@ bool MenuManager::readDialDirectory()
             sysconn.font = pElem->Attribute("font");
             sysconn.keyMap = pElem->Attribute("keyMap");
             sysconn.termType = pElem->Attribute("termType");
+            sscanf(pElem->Attribute("termSize"), "%dx%d", &sysconn.termWidth, &sysconn.termHeight);
             // Add to Vector so we can parse in building the dialing directory.
             m_systemConnection.push_back(sysconn);
         }

@@ -154,7 +154,7 @@ void IOService::run()
                 std::vector<std::string> ip_address = split(job_work->getStringSequence(), ':');
                 std::cout << "ip_address: " << ip_address.size();
                 bool is_success = false;
-                if (ip_address.size() >= 4)
+                if (ip_address.size() >= 7)
                 {
                     
                     std::cout << "1. " << ip_address.at(0) << std::endl;
@@ -166,7 +166,10 @@ void IOService::run()
                                      ip_address.at(0),
                                      std::atoi(ip_address.at(1).c_str()),
                                      ip_address.at(2),
-                                     ip_address.at(3)
+                                     ip_address.at(3),
+                                     ip_address.at(4),
+                                     std::atoi(ip_address.at(5).c_str()),
+                                     std::atoi(ip_address.at(6).c_str())
                                  );
                 }
 

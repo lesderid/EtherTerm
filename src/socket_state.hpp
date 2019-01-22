@@ -179,10 +179,15 @@ class SSH_Socket : public SocketState
 public:
 
     SSH_Socket(const std::string &host, const int &port,
-               const std::string &user, const std::string &pass)
+               const std::string &user, const std::string &pass,
+               const std::string &termType,
+               const int &termWidth, const int &termHeight)
         : SocketState(host, port)
         , m_user_id(user)
         , m_password(pass)
+        , m_term_type(termType)
+        , m_term_width(termWidth)
+        , m_term_height(termHeight)
         , m_ssh_channel(nullptr)
         , m_ssh_session(nullptr)
     { }
@@ -212,6 +217,10 @@ private:
 
     std::string m_user_id;
     std::string m_password;
+
+    std::string m_term_type;
+    int m_term_width;
+    int m_term_height;
 
     ssh_channel m_ssh_channel;
     ssh_session m_ssh_session;

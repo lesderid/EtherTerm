@@ -25,6 +25,7 @@
 #include <cstring>
 #include <cerrno>
 #include <iostream>
+#include <algorithm>
 
 /*
  * Start of SSH_Socket Derived Class (SSH)
@@ -206,7 +207,11 @@ bool SSH_Socket::onEnter()
 
     // Set the term and pty size of the terminal.
     // Only After the Shell has been initialized.
-    if(ssh_channel_request_pty_size(m_ssh_channel, "ansi", 80, 25))
+
+    std::string termType;
+    termType.resize(m_term_type.size());
+    std::transform(m_term_type.begin(), m_term_type.end(), termType.begin(), [](unsigned char c){ return std::tolower(c); });
+    if(ssh_channel_request_pty_size(m_ssh_channel, termType.c_str(), m_term_width, m_term_height))
     {
         std::cout << "Error: ssh_channel_request_pty_size: " << m_host
                   << " " << ssh_get_error(m_ssh_session) << " " << rc << std::endl;

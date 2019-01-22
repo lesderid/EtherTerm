@@ -9,6 +9,7 @@
 #include <iostream>
 #include <thread>
 #include <set>
+#include <string>
 
 /**
  * @class Interface
@@ -144,8 +145,8 @@ public:
     {
 
         // Hard Coded for testing, move this to direcotry.ini!
-        int height = 25;
         int width = 80;
+        int height = 25;
 
         // Pass Nullptr on Connection and System Connection since this is a local session.
         session_ptr new_session = Session::create(
@@ -193,8 +194,8 @@ public:
         connection_ptr new_connection(new async_connection(m_io_service));
 
         // Hard Coded for testing, move this to direcotry.ini!
-        int height = 25;
-        int width = 80;
+        int height = system_connection->termHeight;
+        int width = system_connection->termWidth;
 
         // Create the Session before passing to the Connection (Async Thread)
         session_ptr new_session = Session::create(
@@ -242,6 +243,12 @@ public:
             connection_string.append(system_connection->login);
             connection_string.append(":");
             connection_string.append(system_connection->password);
+            connection_string.append(":");
+            connection_string.append(system_connection->termType);
+            connection_string.append(":");
+            connection_string.append(std::to_string(system_connection->termWidth));
+            connection_string.append(":");
+            connection_string.append(std::to_string(system_connection->termHeight));
         }
 
         new_session->createConnection(connection_string, system_connection->protocol);

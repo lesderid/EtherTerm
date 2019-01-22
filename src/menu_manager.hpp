@@ -36,6 +36,8 @@ public:
     std::string font;
     std::string keyMap;    // ANSI, VT100 etc..
     std::string termType;  // ANSI, XTERM etc..
+    int termWidth;
+    int termHeight;
 
 };
 

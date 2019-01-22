@@ -103,14 +103,14 @@ bool SocketHandler::connectTelnetSocket(std::string host, int port)
  * @return
  */
 bool SocketHandler::connectSshSocket(std::string host, int port,
-                                     std::string username, std::string password)
+                                     std::string username, std::string password, std::string termType, int termWidth, int termHeight)
 {
     if(!m_is_active)
     {
         try
         {
             m_socket_type = SOCKET_TYPE_SSH;
-            socket_state_ptr ssh_socket(new SSH_Socket(host, port, username, password));
+            socket_state_ptr ssh_socket(new SSH_Socket(host, port, username, password, termType, termWidth, termHeight));
             m_socket.push_back(ssh_socket);
             if(m_socket.back()->onEnter())
             {
