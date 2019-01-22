@@ -246,8 +246,7 @@ bool WindowManager::createWindow(bool fullScreen)
     if(fullScreen)
     {
         m_window = SDL_CreateWindow("EtherTerm 0.4.6 Alpha Demo - Full Screen",
-                                    (m_position_placement % 2 == 0) ? SDL_WINDOWPOS_CENTERED : display_width,
-                                    (m_position_placement % 2 == 0) ? SDL_WINDOWPOS_CENTERED : display_height,
+                                    0, 0,
                                     m_width,
                                     m_height,
                                     SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP);
@@ -262,8 +261,7 @@ bool WindowManager::createWindow(bool fullScreen)
     else
     {
         m_window = SDL_CreateWindow("EtherTerm 0.4.6 Alpha Demo - Windowed",
-                                    (m_position_placement % 2 == 0) ? SDL_WINDOWPOS_CENTERED : display_width,
-                                    (m_position_placement % 2 == 0) ? SDL_WINDOWPOS_CENTERED : display_height,
+                                    0, 0,
                                     m_width,
                                     m_height,
                                     SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
